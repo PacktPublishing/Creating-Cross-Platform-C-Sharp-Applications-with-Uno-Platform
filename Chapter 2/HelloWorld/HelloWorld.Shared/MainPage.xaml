@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="HelloWorld.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HelloWorld"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:win="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:android="http://uno.ui/android"
+    xmlns:ios="http://uno.ui/ios"
+    xmlns:wasm="http://uno.ui/wasm"
+    xmlns:macos="http://uno.ui/macos"
+    xmlns:skia="http://uno.ui/skia"
+    mc:Ignorable="d android ios wasm macos skia">
+
+    <StackPanel>
+        <TextBlock x:Name="helloTextBlock" 
+            Text="Hello World!" Margin="20" 
+            FontSize="30" />
+        <win:TextBlock Text="Welcome on Windows!"/>
+        <android:TextBlock Text="Welcome on Android!"/>
+        <ios:TextBlock Text="Welcome on iOS!"/>
+        <wasm:TextBlock Text="Welcome on WASM!"/>
+        <macos:TextBlock Text="Welcome on Mac OS!"/>
+        <skia:TextBlock Text="Welcome on Skia!"/>
+        <Button Content="Change test" 
+            Click="ChangeTextButton_Click"/>
+    </StackPanel>
+
+
+</Page>
