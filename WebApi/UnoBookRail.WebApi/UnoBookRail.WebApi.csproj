@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>b2df05ef-5446-4005-97c0-cf1ae361f753</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharedLibrary\UnoBookRail.Common\UnoBookRail.Common.csproj" />
+  </ItemGroup>
+
+</Project>

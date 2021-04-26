@@ -360,3 +360,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Project specific file exclusions
+WebApi/UnoBookRail.WebApi/Properties/ServiceDependencies/unobookrail - Web Deploy/apis1.arm.json
+WebApi/UnoBookRail.WebApi/Properties/ServiceDependencies/unobookrail - Web Deploy/profile.arm.json
+WebApi/UnoBookRail.WebApi/Properties/serviceDependencies.unobookrail - Web Deploy.json
