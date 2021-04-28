@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="NetworkAssist.Views.ArrivalsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:android="http://uno.ui/android"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:NetworkAssist.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:network="using:UnoBookRail.Common.Network"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d android">
+    <UserControl.Resources>
+        <DataTemplate x:Key="HeaderTemplate">
+            <Grid HorizontalAlignment="Stretch" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    Margin="0"
+                    FontWeight="Bold"
+                    Style="{StaticResource SubheaderTextBlockStyle}"
+                    Text="{Binding Platform}" />
+            </Grid>
+
+        </DataTemplate>
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Margin="0,10"
+                    Style="{StaticResource TitleTextBlockStyle}"
+                    Text="{Binding DisplayedTime}" />
+                <TextBlock
+                    Grid.Column="1"
+                    Margin="0,10"
+                    Style="{StaticResource TitleTextBlockStyle}"
+                    Text="{Binding Destination}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ComboBox
+            x:Name="StationList"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ItemsSource="{x:Bind VM.ListOfStations}"
+            SelectedItem="{x:Bind VM.SelectedStation, Mode=TwoWay}"
+            SelectionChanged="OnStationListSelectionChanged"
+            SelectionChangedTrigger="Always">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="network:Station">
+                    <TextBlock FontSize="26" Text="{x:Bind Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button
+            Grid.Column="1"
+            Width="60"
+            Height="60"
+            android:Style="{StaticResource MaterialContainedButtonStyle}"
+            Command="{x:Bind VM.RefreshCommand}">
+            <SymbolIcon Symbol="Refresh" />
+        </Button>
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="4"
+            HorizontalAlignment="Stretch"
+            HorizontalTextAlignment="Right"
+            Text="{x:Bind VM.DataTimestamp, Mode=OneWay}" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="4"
+            HorizontalAlignment="Stretch"
+            Foreground="Red"
+            HorizontalTextAlignment="Right"
+            Text="Connectivity issues: data may not be up to date!"
+            TextWrapping="WrapWholeWords"
+            Visibility="{x:Bind VM.ShowErrorMsg, Mode=OneWay}" />
+
+        <ListView
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            ItemTemplate="{StaticResource ItemTemplate}"
+            ItemsSource="{x:Bind VM.ArrivalsViewSource}"
+            SelectionMode="None">
+            <ListView.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource HeaderTemplate}" />
+            </ListView.GroupStyle>
+        </ListView>
+
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <TextBlock
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource SubheaderTextBlockStyle}"
+                Text="Select a station"
+                TextWrapping="NoWrap"
+                Visibility="{x:Bind VM.ShowNoStnMsg, Mode=OneWay}" />
+            <ProgressRing
+                Width="100"
+                Height="100"
+                IsActive="True"
+                IsEnabled="True"
+                Visibility="{x:Bind VM.IsBusy, Mode=OneWay}" />
+        </Grid>
+
+    </Grid>
+</UserControl>
