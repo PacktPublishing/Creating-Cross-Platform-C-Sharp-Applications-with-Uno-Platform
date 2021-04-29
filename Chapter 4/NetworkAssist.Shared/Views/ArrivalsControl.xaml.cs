@@ -19,7 +19,7 @@ namespace NetworkAssist.Views
 {
 public sealed partial class ArrivalsControl : UserControl
 {
-    public ArrivalsViewModel VM { get; set; }
+    private ArrivalsViewModel VM { get; set; }
 
     public ArrivalsControl()
     {

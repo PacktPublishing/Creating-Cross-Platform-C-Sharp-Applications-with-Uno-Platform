@@ -121,7 +121,7 @@ namespace NetworkAssist.ViewModels
                         if (!string.IsNullOrEmpty(arr.DirectionOneName))
                         {
                             var d1details = new StationArrivalDetails(arr.DirectionOneName);
-                            d1details.AddRange(arr.DirectionOneDetails.Select(a => new DisplayedArrivalDetail(a)));
+                            d1details.AddRange(arr.DirectionOneDetails);
 
                             Arrivals.Add(d1details);
                         }
@@ -129,7 +129,7 @@ namespace NetworkAssist.ViewModels
                         if (!string.IsNullOrEmpty(arr.DirectionTwoName))
                         {
                             var d2details = new StationArrivalDetails(arr.DirectionTwoName);
-                            d2details.AddRange(arr.DirectionTwoDetails.Select(a => new DisplayedArrivalDetail(a)));
+                            d2details.AddRange(arr.DirectionTwoDetails);
 
                             Arrivals.Add(d2details);
                         }

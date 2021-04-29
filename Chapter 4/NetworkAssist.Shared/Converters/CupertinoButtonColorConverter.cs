@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Windows.UI.Xaml.Data;
 
 namespace NetworkAssist.Converters
@@ -18,7 +16,8 @@ namespace NetworkAssist.Converters
                 return App.Current.Resources["CupertinoSecondaryGrayBrush"];
             }
         }
+
         public object ConvertBack(object value, Type targetType, object parameter, string language)
-  => throw new NotImplementedException();
+            => throw new NotImplementedException();
     }
 }

@@ -24,13 +24,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ArrivalsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DataService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DisplayedArrivalDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StationArrivalDetails.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ArrivalsControl.xaml.cs">
       <DependentUpon>ArrivalsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NetworkInfoControl.xaml.cs">
-      <DependentUpon>NetworkInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\QuickReportControl.xaml.cs">
       <DependentUpon>QuickReportControl.xaml</DependentUpon>
@@ -42,10 +38,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\ArrivalsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\NetworkInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

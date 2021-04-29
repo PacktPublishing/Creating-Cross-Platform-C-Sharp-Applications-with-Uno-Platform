@@ -2,16 +2,18 @@
     x:Class="NetworkAssist.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ios="http://uno.ui/ios"
     xmlns:local="using:NetworkAssist"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-xmlns:ios="http://uno.ui/ios"
-mc:Ignorable="ios">
+    mc:Ignorable="ios">
 
-<Application.Resources>
-    <ResourceDictionary.MergedDictionaries>
-        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-    </ResourceDictionary.MergedDictionaries>
-    <ios:Style TargetType="Button" BasedOn="{StaticResource CupertinoButtonStyle}" />
-</Application.Resources>
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+            <ios:Style BasedOn="{StaticResource CupertinoButtonStyle}" TargetType="Button" />
+        </ResourceDictionary>
+    </Application.Resources>
 
 </Application>

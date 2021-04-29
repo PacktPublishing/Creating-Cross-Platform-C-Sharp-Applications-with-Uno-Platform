@@ -27,21 +27,11 @@ namespace NetworkAssist
         public void ShowArrivals(object sender, RoutedEventArgs args)
         {
             Arrivals.Visibility = Visibility.Visible;
-            NetworkInfo.Visibility = Visibility.Collapsed;
             QuickReport.Visibility = Visibility.Collapsed;
         }
-
-        public void ShowNetworkInfo(object sender, RoutedEventArgs args)
+                public void ShowQuickReport(object sender, RoutedEventArgs args)
         {
             Arrivals.Visibility = Visibility.Collapsed;
-            NetworkInfo.Visibility = Visibility.Visible;
-            QuickReport.Visibility = Visibility.Collapsed;
-        }
-
-        public void ShowQuickReport(object sender, RoutedEventArgs args)
-        {
-            Arrivals.Visibility = Visibility.Collapsed;
-            NetworkInfo.Visibility = Visibility.Collapsed;
             QuickReport.Visibility = Visibility.Visible;
         }
     }
