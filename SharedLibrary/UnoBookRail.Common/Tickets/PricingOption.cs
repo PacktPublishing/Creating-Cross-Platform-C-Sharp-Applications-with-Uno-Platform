@@ -1,4 +1,4 @@
-﻿namespace UnoBookRail.Common.Network
+﻿namespace UnoBookRail.Common.Tickets
 {
     public class PricingOption
     {

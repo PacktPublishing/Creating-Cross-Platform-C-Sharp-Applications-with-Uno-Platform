@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="DigitalTicket.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DigitalTicket"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Grid toolkit:VisibleBoundsPadding.PaddingMask="All">
+        <muxc:NavigationView x:Name="AppNavigation"
+            PaneDisplayMode="LeftMinimal"
+            IsBackButtonVisible="Collapsed"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            SelectionChanged="{x:Bind navigationVM.NavigationView_SelectionChanged, Mode=OneTime}">
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem x:Name="JourneyBookingItem" x:Uid="JourneyBookingItem" Tag="JourneyPlanner"/>
+                <muxc:NavigationViewItem x:Uid="OwnedTicketsItem" Tag="OwnedTickets"/>
+                <muxc:NavigationViewItem x:Uid="AllDayTicketsItem" Tag="AllDayTickets" IsEnabled="False"/>
+                <muxc:NavigationViewItem x:Uid="NetworkPlanItem" IsEnabled="False"/>
+                <muxc:NavigationViewItem x:Uid="LineOverViewItemItem" IsEnabled="False"/>
+            </muxc:NavigationView.MenuItems>
+            <Frame x:Name="ContentFrame" Padding="0,40,0,0"/>
+        </muxc:NavigationView>
+
+    </Grid>
+</Page>

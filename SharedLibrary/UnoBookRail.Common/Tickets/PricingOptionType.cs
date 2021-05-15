@@ -1,5 +1,5 @@
 ﻿
-namespace UnoBookRail.Common.Network
+namespace UnoBookRail.Common.Tickets
 {
     public enum PricingOptionType
     {

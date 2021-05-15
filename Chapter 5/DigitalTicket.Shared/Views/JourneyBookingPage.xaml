@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="DigitalTicket.Views.JourneyBookingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DigitalTicket.Views"
+    xmlns:viewModels="using:DigitalTicket.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid>
+            <StackPanel Padding="10" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <TextBlock x:Name="StartPointLabel" x:Uid="StartPointLabel" FontSize="20"/>
+            <ComboBox ItemsSource="{x:Bind journeyBookingVM.AllStations}" x:Uid="StartPointComboBox"
+                AutomationProperties.LabeledBy="{x:Bind StartPointLabel}"
+                SelectedItem="{x:Bind journeyBookingVM.SelectedStartpoint,Mode=TwoWay}"
+                HorizontalAlignment="Stretch" DisplayMemberPath="Name"/>
+            <TextBlock x:Name="EndPointLabel" x:Uid="EndPointLabel" FontSize="20"/>
+            <ComboBox ItemsSource="{x:Bind journeyBookingVM.AvailableDestinations, Mode=OneWay}" x:Uid="EndPointComboBox"
+                AutomationProperties.LabeledBy="{x:Bind EndPointLabel}"
+                SelectedItem="{x:Bind journeyBookingVM.SelectedEndpoint,Mode=TwoWay}"
+                HorizontalAlignment="Stretch" DisplayMemberPath="Name"/>
+                <muxc:RadioButtons x:Name="SelectedTicketRadioButtons" Margin="0,10,0,0"
+                    AutomationProperties.LabeledBy="{x:Bind EndPointLabel}"
+                    SelectionChanged="SelectedTicketRadioButtons_SelectionChanged">
+                    <muxc:RadioButtons.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:JourneyBookingOption">
+                            <StackPanel>
+                                <TextBlock Text="{x:Bind Title}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind Price}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </muxc:RadioButtons.ItemTemplate>
+                </muxc:RadioButtons>
+
+                <Button x:Uid="BookTicketButton" Style="{ThemeResource AccentButtonStyle}" 
+                    Margin="20,10,20,0" HorizontalAlignment="Stretch"
+                    Click="BookTicketButton_Click"/>
+            </StackPanel>
+
+            <Grid x:Name="ConfirmBookingPanel" Visibility="Collapsed" Background="{ThemeResource SystemControlBackgroundBaseMediumBrush}"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel VerticalAlignment="Center" Background="{ThemeResource SystemControlBackgroundAltHighBrush}" Padding="20">
+                    <TextBlock x:Uid="BookTicketDialogHeader" Style="{ThemeResource SubheaderTextBlockStyle}" TextWrapping="WrapWholeWords"/>
+                    <TextBlock x:Uid="BookTicketDialogInformation" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{x:Bind journeyBookingVM.SelectedTicketOption.Title, Mode=OneWay}" FontSize="16" FontWeight="Bold" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{x:Bind journeyBookingVM.SelectedTicketOption.Price, Mode=OneWay}" TextWrapping="WrapWholeWords"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Uid="BookTicketDialogBookButton" Command="{x:Bind journeyBookingVM.BookJourney}" HorizontalAlignment="Center"/>
+                        <Button Grid.Column="1" x:Uid="BookTicketDialogCancelButton" Click="CancelBookingProcessButton_Click" HorizontalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+            <muxc:InfoBar x:Name="TicketBookedInfoBar" x:Uid="TicketBookedInfoBar" Severity="Success" VerticalAlignment="Bottom"/>
+        </Grid>
+    </ScrollViewer>
+</Page>

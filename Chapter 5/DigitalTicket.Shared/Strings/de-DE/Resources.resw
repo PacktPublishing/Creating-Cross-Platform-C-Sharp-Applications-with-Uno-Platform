@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdultRoundTripLabel" xml:space="preserve">
+    <value>Erwachsene - Einzelticket mit Rückfahrt</value>
+    <comment>Name of the adult round trip ticket</comment>
+  </data>
+  <data name="AdultSingleTripLabel" xml:space="preserve">
+    <value>Erwachsene - Einzelticket</value>
+    <comment>Name of the adult single trip ticket</comment>
+  </data>
+  <data name="AllDayTicketsItem.Content" xml:space="preserve">
+    <value>Tagestickets - bald</value>
+    <comment>Label of the currently disabled "all day tickets" navigation option</comment>
+  </data>
+  <data name="BookTicketButton.Content" xml:space="preserve">
+    <value>Ticket kaufen</value>
+    <comment>Text of button at the bottom of the journey booking page to book a ticket</comment>
+  </data>
+  <data name="BookTicketDialogBookButton.Content" xml:space="preserve">
+    <value>Ticket kaufen</value>
+    <comment>Text of button to confirm booking of a ticket</comment>
+  </data>
+  <data name="BookTicketDialogCancelButton.Content" xml:space="preserve">
+    <value>Abbrechen</value>
+    <comment>Text of button to cancel booking process</comment>
+  </data>
+  <data name="BookTicketDialogHeader.Text" xml:space="preserve">
+    <value>Bestätige Ticketkauf</value>
+    <comment>Header text of book ticket dialog</comment>
+  </data>
+  <data name="BookTicketDialogInformation.Text" xml:space="preserve">
+    <value>Du bist im Begriff dieses Ticket zu kaufen. Dein Account wird mit dem unten gelisteten Betrag belastet.</value>
+    <comment>Explanation text for the book ticket dialog</comment>
+  </data>
+  <data name="ChildRoundTripLabel" xml:space="preserve">
+    <value>Kind - Einzelticket mit Rückfahrt</value>
+    <comment>Name of the child round trip ticket</comment>
+  </data>
+  <data name="ChildSingleTripLabel" xml:space="preserve">
+    <value>Kind - Einzelticket</value>
+    <comment>Name of the child single trip ticket</comment>
+  </data>
+  <data name="CloseQRCodeButton.Content" xml:space="preserve">
+    <value>QR Code schließen</value>
+    <comment>Text of close QR code button</comment>
+  </data>
+  <data name="EndPointLabel.Text" xml:space="preserve">
+    <value>Ziel Haltestelle</value>
+    <comment>Label for destination-station selection ComboBox</comment>
+  </data>
+  <data name="JourneyBookingItem.Content" xml:space="preserve">
+    <value>Reise buchen</value>
+    <comment>Label for the "journey booking" navigation option</comment>
+  </data>
+  <data name="LanguageOptionComboBox.AutomationProperties.Name" xml:space="preserve">
+    <value>Wähle Sprache der App</value>
+    <comment>Label provided for assistive technology forthe language selection ComboBox</comment>
+  </data>
+  <data name="LanguageOptionComboBox.Header" xml:space="preserve">
+    <value>Wähle die Sprache der App aus</value>
+    <comment>Header text for the language selection ComboBox</comment>
+  </data>
+  <data name="LineOverViewItemItem.Content" xml:space="preserve">
+    <value>Linien Übersicht - bald</value>
+    <comment>Label of the currently disabled "line overview" navigation option</comment>
+  </data>
+  <data name="NetworkPlanItem.Content" xml:space="preserve">
+    <value>Netzwerk Plan - bald</value>
+    <comment>Label of the currently disabled "network plan" navigation option</comment>
+  </data>
+  <data name="NoTicketsLabel.Text" xml:space="preserve">
+    <value>Momentan hast du keine Tickets gekauft.</value>
+    <comment>Text shown on owned tickets page when no tickets have been booked</comment>
+  </data>
+  <data name="OwnedTicketsItem.Content" xml:space="preserve">
+    <value>Meine Tickets</value>
+    <comment>Label of the "owned tickets" navigation option</comment>
+  </data>
+  <data name="Plus65RoundTripLabel" xml:space="preserve">
+    <value>65 plus - Einzelticket mit Rückfahrt</value>
+    <comment>Name of the 65+ round trip ticket</comment>
+  </data>
+  <data name="Plus65SingleTripLabel" xml:space="preserve">
+    <value>65 plus - Einzelticket</value>
+    <comment>Name of the 65+ single trip ticket</comment>
+  </data>
+  <data name="QRCodeDisplay.AutomationProperties.Name" xml:space="preserve">
+    <value>QR Code des momentanen ausgewählten Tickets</value>
+    <comment>Label provided for assistive technology for the QR code image</comment>
+  </data>
+  <data name="ShowQRCodeButton.Content" xml:space="preserve">
+    <value>QR Code anzeigen</value>
+    <comment>Text of the button that shows the QR code</comment>
+  </data>
+  <data name="StartPointLabel.Text" xml:space="preserve">
+    <value>Start Haltestelle</value>
+    <comment>Label for start-station selection ComboBox</comment>
+  </data>
+  <data name="TicketBookedInfoBar.Title" xml:space="preserve">
+    <value>Ticket erfolgreich gekauft!</value>
+    <comment>Title of the book process confirmation InfoBar</comment>
+  </data>
+  <data name="UseSystemLanguageName" xml:space="preserve">
+    <value>Benutze Systemsprache</value>
+    <comment>Name of the "use system language" option used in the language selection</comment>
+  </data>
+</root>

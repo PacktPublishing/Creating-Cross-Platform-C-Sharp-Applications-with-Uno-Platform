@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnoBookRail.Common.Network;
 
-namespace UnoBookRail.Common.Network
+namespace UnoBookRail.Common.Tickets
 {
     public class PricingCalculator
     {
@@ -47,27 +48,27 @@ namespace UnoBookRail.Common.Network
 
         private static string CalculateAdultOneWayTrip(int distance)
         {
-            return 1.10 + Math.Max(distance * 0.35, 2.5) + " UB";
+            return "$" + (1.10 + Math.Max(distance * 0.35, 2.5)).ToString("N2");
         }
         private static string CalculateAdultRoundTrip(int distance)
         {
-            return 1.30 + Math.Max(distance * 0.6, 5) + " UB";
+            return "$" + (1.30 + Math.Max(distance * 0.6, 5)).ToString("N2");
         }
         private static string CalculateChildOneWayTrip(int distance)
         {
-            return 0.8 + Math.Max(distance * 0.15, 4) + " UB";
+            return "$" + (0.8 + Math.Max(distance * 0.15, 2)).ToString("N2");
         }
         private static string CalculateChildRoundTrip(int distance)
         {
-            return 1.00 + Math.Max(distance * 0.25, 4) + " UB";
+            return "$" + (1.00 + Math.Max(distance * 0.25, 4)).ToString("N2");
         }
         private static string Calculate65PlusOneWayTrip(int distance)
         {
-            return 1.00 + Math.Max(distance * 0.25, 2) + " UB";
+            return "$" + (1.00 + Math.Max(distance * 0.25, 2)).ToString("N2");
         }
         private static string Calculate65PlusRoundTrip(int distance)
         {
-            return 1.20 + Math.Max(distance * 0.45, 4) + " UB";
+            return "$" + (1.20 + Math.Max(distance * 0.45, 4)).ToString("N2");
         }
     }
 }
