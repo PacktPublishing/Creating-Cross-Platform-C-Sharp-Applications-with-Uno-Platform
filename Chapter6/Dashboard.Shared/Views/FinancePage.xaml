@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="Dashboard.Views.FinancePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Dashboard.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sf="using:Syncfusion.UI.Xaml.Charts"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <RelativePanel HorizontalAlignment="Center">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="SecondaryItem.(RelativePanel.AlignTopWithPanel)" Value="True"/>
+                        <Setter Target="SecondaryItem.(RelativePanel.AlignVerticalCenterWithPanel)" Value="False"/>
+                        <Setter Target="SecondaryItem.(RelativePanel.RightOf)" Value="MainChart"/>
+                        <Setter Target="SecondaryItem.(RelativePanel.Below)" Value="{x:Null}"/>
+                        <Setter Target="SecondaryItem.Margin" Value="0,200,0,0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <sf:SfChart
+            x:Name="MainChart"
+            MaxWidth="600"
+            MaxHeight="600">
+            <sf:SfChart.PrimaryAxis>
+                <sf:CategoryAxis LabelPlacement="BetweenTicks" ShowGridLines="False" />
+            </sf:SfChart.PrimaryAxis>
+            <sf:SfChart.SecondaryAxis>
+                <sf:NumericalAxis ShowGridLines="True" Visibility="Collapsed" />
+            </sf:SfChart.SecondaryAxis>
+
+            <sf:LineSeries
+                ItemsSource="{x:Bind DailySales}"
+                XBindingPath="Hour"
+                YBindingPath="TotalSales" />
+        </sf:SfChart>
+
+
+        <TextBlock
+            x:Name="SecondaryItem"
+            FontSize="200"
+            FontWeight="Black"
+            RelativePanel.Below="MainChart"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            
+            Text="{x:Bind TrendArrows}" />
+
+    </RelativePanel>
+</Page>

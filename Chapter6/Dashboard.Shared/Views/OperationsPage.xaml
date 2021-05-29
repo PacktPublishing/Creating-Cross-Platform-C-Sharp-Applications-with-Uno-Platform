@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="Dashboard.Views.OperationsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Dashboard.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ig="using:Infragistics.Controls.Charts"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="PassengerChart.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="PassengerChart.(Grid.RowSpan)" Value="2"/>
+                        <Setter Target="CurrentCount.(Grid.Row)" Value="0"/>
+                        <Setter Target="CurrentCount.(Grid.Column)" Value="1"/>
+                        <Setter Target="CurrentCount.(Grid.ColumnSpan)" Value="1"/>
+                        <Setter Target="CurrentCount.(Grid.RowSpan)" Value="2"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ig:XamDataChart Grid.Row="0" Grid.ColumnSpan="2" x:Name="PassengerChart"  >
+            <ig:XamDataChart.Axes>
+                    <ig:CategoryXAxis x:Name="XAxis" ItemsSource="{x:Bind Passengers}" />
+                <ig:NumericYAxis x:Name="YAxis" MinimumValue="0" Interval="500" Label="{}{}" />
+            </ig:XamDataChart.Axes>
+            <ig:XamDataChart.Series>
+                <ig:StackedColumnSeries XAxis="{Binding ElementName=XAxis}"
+                                YAxis="{Binding ElementName=YAxis}"
+                                ItemsSource="{x:Bind Passengers}">
+                    <ig:StackedColumnSeries.Series>
+                        <ig:StackedFragmentSeries ValueMemberPath="Children" />
+                        <ig:StackedFragmentSeries ValueMemberPath="Adults" />
+                        <ig:StackedFragmentSeries ValueMemberPath="Seniors" />
+                    </ig:StackedColumnSeries.Series>
+                </ig:StackedColumnSeries>
+            </ig:XamDataChart.Series>
+        </ig:XamDataChart>
+
+        <TextBlock x:Name="CurrentCount" Text="{x:Bind PsngrCount}"
+                    Grid.Row="1" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="300" />
+    </Grid>
+</Page>
