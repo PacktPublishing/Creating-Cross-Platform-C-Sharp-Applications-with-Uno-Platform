@@ -6,11 +6,12 @@
         {
         }
 
-        public Station(int id, string name, Branch branch, bool isTerminus = false)
+        public Station(int id, string name, Branch branch, (float x, float y) pos, bool isTerminus = false)
         {
             Id = id;
             Name = name;
             Branch = branch;
+            MapPosition = pos;
             IsTerminus = isTerminus;
         }
 
@@ -21,6 +22,8 @@
         public bool IsTerminus { get; internal set; }
 
         public Branch Branch { get; internal set; }
+
+        public (float X, float Y) MapPosition { get; internal set; }
 
         public PlatformDirections Directions
             => Branch == Branch.MainLine ? PlatformDirections.EastWest

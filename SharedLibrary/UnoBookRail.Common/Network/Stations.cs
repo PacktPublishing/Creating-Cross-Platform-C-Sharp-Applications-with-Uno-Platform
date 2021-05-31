@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnoBookRail.Common.Mapping;
 
 namespace UnoBookRail.Common.Network
 {
@@ -14,6 +15,8 @@ namespace UnoBookRail.Common.Network
         private const string SouthBranchTerminusName = "South Point Pier";
 
         private readonly ITimeAbstraction _time;
+
+        public static int InterchangeId => 101;
 
         public Stations(ITimeAbstraction time = null)
         {
@@ -31,33 +34,33 @@ namespace UnoBookRail.Common.Network
         {
             return new List<Station>
             {
-                new Station(101, "Interchange", Branch.MainLine),
-                new Station(102, "Main Street", Branch.MainLine),
-                new Station(103, "Central Station", Branch.MainLine),
-                new Station(104, "Founder Place", Branch.MainLine),
-                new Station(105, "Market Street", Branch.MainLine),
-                new Station(106, "Memorial Park", Branch.MainLine),
-                new Station(107, "Conference Center", Branch.MainLine),
-                new Station(108, "Stadium", Branch.MainLine),
-                new Station(109, "Green Field", Branch.MainLine),
-                new Station(110, "Airport parking", Branch.MainLine),
-                new Station(AirportTerminusId, AirportTerminusName, Branch.MainLine, isTerminus: true),
+                new Station(InterchangeId, "Interchange", Branch.MainLine, (17.4f, 83.64f)),
+                new Station(102, "Main Street", Branch.MainLine, (24.1f, 84.12f)),
+                new Station(103, "Central Station", Branch.MainLine, (33.6f, 84.4f)),
+                new Station(104, "Founder Place", Branch.MainLine, (43.1f, 83.9f)),
+                new Station(105, "Market Street", Branch.MainLine, (53.1f, 82.0f)),
+                new Station(106, "Memorial Park", Branch.MainLine, (63.2f, 78.4f)),
+                new Station(107, "Conference Center", Branch.MainLine, (75.1f, 81.5f)),
+                new Station(108, "Stadium", Branch.MainLine, (80.3f, 78.9f)),
+                new Station(109, "Green Field", Branch.MainLine, (90.8f, 82.7f)),
+                new Station(110, "Airport parking", Branch.MainLine, (101.0f, 83.6f)),
+                new Station(AirportTerminusId, AirportTerminusName, Branch.MainLine, (109.4f, 81.2f), isTerminus: true),
 
-                new Station(201, "Metropolitan Bridge", Branch.NorthBranch),
-                new Station(202, "Wagner Street", Branch.NorthBranch),
-                new Station(203, "Lacey Boulevard", Branch.NorthBranch),
-                new Station(204, "Finney Park", Branch.NorthBranch),
-                new Station(205, "Union Square", Branch.NorthBranch),
-                new Station(206, "Freedom Road", Branch.NorthBranch),
-                new Station(207, "University", Branch.NorthBranch),
-                new Station(208, NorthBranchTerminusName, Branch.NorthBranch, isTerminus: true),
+                new Station(201, "Metropolitan Bridge", Branch.NorthBranch, (11.7f, 75.3f)),
+                new Station(202, "Wagner Street", Branch.NorthBranch, (9.0f, 66.7f)),
+                new Station(203, "Lacey Boulevard", Branch.NorthBranch, (10.5f, 58.1f)),
+                new Station(204, "Finney Park", Branch.NorthBranch, (11.2f, 47.2f)),
+                new Station(205, "Union Square", Branch.NorthBranch, (10.3f, 40.3f)),
+                new Station(206, "Freedom Road", Branch.NorthBranch, (12.1f, 31.5f)),
+                new Station(207, "University", Branch.NorthBranch, (8.6f, 22.4f)),
+                new Station(208, NorthBranchTerminusName, Branch.NorthBranch, (10f, 10.25f), isTerminus: true),
 
-                new Station(301, "Waterfront", Branch.SouthBranch),
-                new Station(302, "Mendelevich Way", Branch.SouthBranch),
-                new Station(303, "Mundy Square", Branch.SouthBranch),
-                new Station(304, "Hawker Avenue", Branch.SouthBranch),
-                new Station(305, "Ferry Port", Branch.SouthBranch),
-                new Station(306, SouthBranchTerminusName, Branch.SouthBranch, isTerminus: true),
+                new Station(301, "Waterfront", Branch.SouthBranch, (10.3f, 91.3f)),
+                new Station(302, "Mendelevich Way", Branch.SouthBranch, (11.2f, 98.2f)),
+                new Station(303, "Mundy Square", Branch.SouthBranch, (11.4f, 107.5f)),
+                new Station(304, "Hawker Avenue", Branch.SouthBranch, (8.3f, 113.2f)),
+                new Station(305, "Ferry Port", Branch.SouthBranch, (11.0f, 122.3f)),
+                new Station(306, SouthBranchTerminusName, Branch.SouthBranch, (8.8f, 128.2f), isTerminus: true),
             };
         }
 
@@ -180,6 +183,115 @@ namespace UnoBookRail.Common.Network
             return distanceFromBranchStart(startStationId)
                  + distanceFromBranchStart(endStationId)
                  + branchChanges;
+        }
+
+        public List<TrainInfo> GetCurrentTrainsInNetwork()
+        {
+            var results = new List<TrainInfo>();
+
+            var now = _time.GetNow();
+            var workingTime = now.AddHours(-1).TimeOfDay;
+
+            var minsPerDeparture = 15;
+
+            var startOfDay = new TimeSpan(5, 30, 0);
+
+            if (now.TimeOfDay >= startOfDay)
+            {
+                var loopMins = Convert.ToInt32(startOfDay.TotalMinutes);
+
+                // Find the first train departure after the time we're interested in
+                while (loopMins < workingTime.TotalMinutes)
+                {
+                    loopMins += minsPerDeparture;
+                }
+
+                while (loopMins <= now.TimeOfDay.TotalMinutes)
+                {
+                    var timeSinceDeparture = 60 - (loopMins - workingTime.TotalMinutes);
+
+                    if (timeSinceDeparture < 60)
+                    {
+                        void AddInfoForTrainLeavingTerminus(int terminusId, CompassDirection direction, bool headingNorth = false)
+                        {
+                            var (left, approaching) = StationsBetweenAfterLeavingTerminus(terminusId, (int)timeSinceDeparture, headingNorth: headingNorth);
+
+                            results.Add(new TrainInfo
+                            {
+                                Direction = direction,
+                                StationLeft = left,
+                                StationApproaching = approaching,
+                                MapPosition = GetMapPoints(left, approaching, (int)timeSinceDeparture - MinutesFromTerminus(left, terminusId)),
+                            });
+                        }
+
+                        // Train leaving Airport
+                        var timeToTravelMainBranch = MinutesFromTerminus(InterchangeId, AirportTerminusId);
+
+                        var heading = (timeSinceDeparture > timeToTravelMainBranch)
+                            ? (loopMins % 30 == 0) ? CompassDirection.North : CompassDirection.South
+                            : CompassDirection.West;
+
+                        AddInfoForTrainLeavingTerminus(AirportTerminusId, heading, loopMins % 30 == 0);
+
+                        if (loopMins % 30 == 0)
+                        {
+                            // Trains leaving lakeside
+                            var minsToReachMainBranch = MinutesFromTerminus(InterchangeId, NorthBranchTerminusId);
+
+                            heading = (timeSinceDeparture > minsToReachMainBranch) ? CompassDirection.East : CompassDirection.South;
+
+                            AddInfoForTrainLeavingTerminus(NorthBranchTerminusId, heading);
+                        }
+                        else
+                        {
+                            // Trains leaving South Point Pier
+                            var minsToReachMainBranch = MinutesFromTerminus(InterchangeId, SouthBranchTerminusId);
+
+                            heading = (timeSinceDeparture > minsToReachMainBranch) ? CompassDirection.East : CompassDirection.North;
+
+                            AddInfoForTrainLeavingTerminus(SouthBranchTerminusId, heading);
+                        }
+                    }
+
+                    loopMins += minsPerDeparture;
+                }
+            }
+
+            return results;
+        }
+
+        public (float X, float Y) GetMapPoints(int stnLeft, int stnApproaching, int minsSinceLeft)
+        {
+            var stn1 = GetStation(stnLeft);
+
+            if (stnLeft == stnApproaching)
+            {
+                return stn1.MapPosition;
+            }
+
+            var stn2 = GetStation(stnApproaching);
+
+            var minsBetweenStns = Math.Abs(MinutesFromTerminus(stnLeft, AirportTerminusId) - MinutesFromTerminus(stnApproaching, AirportTerminusId));
+
+            //   [lat1 +(lat2 - lat1) * per, long1 + (long2 - long1) * per];
+
+            var x1 = Math.Min(stn1.MapPosition.X, stn2.MapPosition.X);
+            var x2 = Math.Max(stn1.MapPosition.X, stn2.MapPosition.X);
+
+            var y1 = Math.Min(stn1.MapPosition.Y, stn2.MapPosition.Y);
+            var y2 = Math.Max(stn1.MapPosition.Y, stn2.MapPosition.Y);
+
+            var perc = (1f / minsBetweenStns * minsSinceLeft);
+
+            var newX = (stn1.MapPosition.X == x1) ? x1 + Math.Abs(x2 - x1) * perc : x2 - Math.Abs(x2 - x1) * perc;
+            var newY = (stn1.MapPosition.Y == y1) ? y1 + Math.Abs(y2 - y1) * perc : y2 - Math.Abs(y2 - y1) * perc;
+
+            return (newX, newY);
+            //return (x1 + Math.Abs(x2 - x1) * perc,
+            //        y1 + Math.Abs(y2 - y1) * perc);
+            //return (stn1.MapPosition.X + (stn2.MapPosition.X - stn1.MapPosition.X) + (1f / minsBetweenStns * minsSinceLeft)),
+            //        stn1.MapPosition.Y + (stn2.MapPosition.Y - stn1.MapPosition.Y) + (1f / minsBetweenStns * minsSinceLeft));
         }
 
         private List<ArrivalDetail> GetNextArrivalDetails(int stationId, CompassDirection direction)
@@ -408,6 +520,155 @@ namespace UnoBookRail.Common.Network
                 default:
                     return -1;
             }
+        }
+
+        internal (int left, int approaching) StationsBetweenAfterLeavingTerminus(int terminusId, int minutes, bool headingNorth = false)
+        {
+            switch (terminusId)
+            {
+                case AirportTerminusId:
+                    if (headingNorth)
+                    {
+                        if (minutes >= 57) return (208, 208);
+                        if (minutes > 53) return (207, 208);
+                        if (minutes == 53) return (207, 207);
+                        if (minutes > 51) return (206, 207);
+                        if (minutes == 51) return (206, 206);
+                        if (minutes > 48) return (205, 206);
+                        if (minutes == 48) return (205, 205);
+                        if (minutes > 44) return (204, 205);
+                        if (minutes == 44) return (204, 204);
+                        if (minutes > 42) return (203, 204);
+                        if (minutes == 42) return (203, 203);
+                        if (minutes > 39) return (202, 203);
+                        if (minutes == 39) return (202, 202);
+                        if (minutes > 37) return (201, 202);
+                        if (minutes == 37) return (201, 201);
+                        if (minutes > 34) return (101, 201);
+                    }
+                    else
+                    {
+                        if (minutes >= 54) return (306, 306);
+                        if (minutes > 50) return (305, 306);
+                        if (minutes == 50) return (305, 305);
+                        if (minutes > 47) return (304, 305);
+                        if (minutes == 47) return (304, 304);
+                        if (minutes > 44) return (303, 304);
+                        if (minutes == 44) return (303, 303);
+                        if (minutes > 41) return (302, 303);
+                        if (minutes == 41) return (302, 302);
+                        if (minutes > 41) return (302, 303);
+                        if (minutes == 41) return (302, 302);
+                        if (minutes > 38) return (301, 302);
+                        if (minutes == 38) return (301, 301);
+                        if (minutes > 34) return (101, 301);
+                    }
+
+                    if (minutes > 32) return (102, 101);
+                    if (minutes == 32) return (102, 102);
+                    if (minutes > 28) return (103, 102);
+                    if (minutes == 28) return (103, 103);
+                    if (minutes > 26) return (104, 103);
+                    if (minutes == 26) return (104, 104);
+                    if (minutes > 23) return (105, 104);
+                    if (minutes == 23) return (105, 105);
+                    if (minutes > 19) return (106, 105);
+                    if (minutes == 19) return (106, 106);
+                    if (minutes > 16) return (107, 106);
+                    if (minutes == 16) return (107, 107);
+                    if (minutes > 12) return (108, 107);
+                    if (minutes == 12) return (108, 108);
+                    if (minutes > 8) return (109, 108);
+                    if (minutes == 8) return (109, 109);
+                    if (minutes > 3) return (110, 109);
+                    if (minutes == 3) return (110, 110);
+                    if (minutes > 0) return (111, 110);
+                    if (minutes == 0) return (111, 111);
+
+                    break;
+                case NorthBranchTerminusId:
+
+                    if (minutes >= 57) return (111, 111);
+                    if (minutes > 54) return (110, 111);
+                    if (minutes == 54) return (110, 110);
+                    if (minutes > 49) return (109, 110);
+                    if (minutes == 49) return (109, 109);
+                    if (minutes > 45) return (108, 109);
+                    if (minutes == 45) return (108, 108);
+                    if (minutes > 41) return (107, 108);
+                    if (minutes == 41) return (107, 107);
+                    if (minutes > 38) return (106, 107);
+                    if (minutes == 38) return (106, 106);
+                    if (minutes > 34) return (105, 106);
+                    if (minutes == 34) return (105, 105);
+                    if (minutes > 31) return (104, 105);
+                    if (minutes == 31) return (104, 104);
+                    if (minutes > 29) return (103, 104);
+                    if (minutes == 29) return (103, 103);
+                    if (minutes > 26) return (102, 103);
+                    if (minutes == 26) return (102, 102);
+                    if (minutes > 24) return (101, 102);
+                    if (minutes == 24) return (101, 101);
+                    if (minutes > 20) return (201, 101);
+                    if (minutes == 20) return (201, 201);
+                    if (minutes > 18) return (202, 201);
+                    if (minutes == 18) return (202, 202);
+                    if (minutes > 15) return (203, 202);
+                    if (minutes == 15) return (203, 203);
+                    if (minutes > 12) return (204, 203);
+                    if (minutes == 12) return (204, 204);
+                    if (minutes > 9) return (205, 204);
+                    if (minutes == 9) return (205, 205);
+                    if (minutes > 7) return (206, 205);
+                    if (minutes == 7) return (206, 206);
+                    if (minutes > 3) return (207, 206);
+                    if (minutes == 3) return (207, 207);
+                    if (minutes > 0) return (208, 207);
+                    if (minutes == 0) return (208, 208);
+
+                    break;
+                case SouthBranchTerminusId:
+
+                    if (minutes >= 54) return (111, 111);
+                    if (minutes > 51) return (110, 111);
+                    if (minutes == 51) return (110, 110);
+                    if (minutes > 46) return (109, 110);
+                    if (minutes == 46) return (109, 109);
+                    if (minutes > 42) return (108, 109);
+                    if (minutes == 42) return (108, 108);
+                    if (minutes > 38) return (107, 108);
+                    if (minutes == 38) return (107, 107);
+                    if (minutes > 35) return (106, 107);
+                    if (minutes == 35) return (106, 106);
+                    if (minutes > 31) return (105, 106);
+                    if (minutes == 31) return (105, 105);
+                    if (minutes > 28) return (104, 105);
+                    if (minutes == 28) return (104, 104);
+                    if (minutes > 26) return (103, 104);
+                    if (minutes == 26) return (103, 103);
+                    if (minutes > 23) return (102, 103);
+                    if (minutes == 23) return (102, 102);
+                    if (minutes > 21) return (101, 102);
+                    if (minutes == 21) return (101, 101);
+                    if (minutes > 17) return (301, 101);
+                    if (minutes == 17) return (301, 301);
+                    if (minutes > 14) return (302, 301);
+                    if (minutes == 14) return (302, 302);
+                    if (minutes > 11) return (303, 302);
+                    if (minutes == 11) return (303, 303);
+                    if (minutes > 8) return (304, 303);
+                    if (minutes == 8) return (304, 304);
+                    if (minutes > 4) return (305, 304);
+                    if (minutes == 4) return (305, 305);
+                    if (minutes > 0) return (306, 305);
+                    if (minutes == 0) return (306, 306);
+
+                    break;
+                default:
+                    return (-1, -1);
+            }
+
+            return (-1, -1);
         }
     }
 }
