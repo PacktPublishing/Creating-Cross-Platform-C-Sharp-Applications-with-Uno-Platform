@@ -5,37 +5,37 @@ namespace UnoBookRail.Common.Auth
 {
     public static class Authentication
     {
-        public static SignInResponse SignIn(string staffIdentifier, string passCode)
+        public static SignInResponse SignIn(string username, string password)
         {
             var response = new SignInResponse();
 
-            if (string.IsNullOrWhiteSpace(staffIdentifier))
+            if (string.IsNullOrWhiteSpace(username))
             {
-                response.Messages.Add("Staff identifier must be provided.");
+                response.Messages.Add("Username must be provided.");
             }
-            else if (staffIdentifier.Trim().Length != 4)
+            else if (username.Trim().Length < 3)
             {
-                response.Messages.Add("Staff identifier is not valid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(passCode))
-            {
-                response.Messages.Add("Passcode must be provided.");
-            }
-            else if (passCode.Trim().Length != 4)
-            {
-                response.Messages.Add("Passcode is not valid.");
+                response.Messages.Add("Username is not valid.");
             }
 
-            if (staffIdentifier.ToLowerInvariant() == Users.DemoUser.Identifier
-              && passCode == "1234")
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                response.Messages.Add("Password must be provided.");
+            }
+            else if (password.Trim().Length <= 4)
+            {
+                response.Messages.Add("Password is too short.");
+            }
+
+            if (username.ToLowerInvariant() == Users.DemoUser.Identifier
+              && password == "1234")
             {
                 response.UserDetails = Users.DemoUser;
                 response.IsSuccessful = true;
             }
             else if (!response.Messages.Any())
             {
-                response.Messages.Add("Unknown user details.");
+                response.Messages.Add("Username or password invalid or user does not exist.");
             }
 
             return response;

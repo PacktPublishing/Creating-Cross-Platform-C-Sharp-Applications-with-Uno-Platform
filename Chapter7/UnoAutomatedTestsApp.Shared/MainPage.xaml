@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="UnoAutomatedTestsApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UnoAutomatedTestsApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="10" Margin="10" RequestedTheme="Light">
+        <StackPanel x:Name="SignInForm" Spacing="10">
+            <TextBox x:Name="UsernameInput" TextChanged="Username_TextChanged" Header="Username"/>
+            <PasswordBox x:Name="PasswordInput" PasswordChanged="Password_PasswordChanged" Header="Pasword"/>
+            <TextBlock x:Name="SignInErrorMessageTextBlock" 
+                Foreground="{ThemeResource SystemErrorTextColor}" Visibility="Collapsed"/>
+            <Button Click="SignInButton_Click" Content="Sign in" x:Name="SignInButton" IsEnabled="False"
+                HorizontalAlignment="Center" BorderThickness="1"/>
+        </StackPanel>
+        <TextBlock x:Name="SignedInLabel" Text="Successfully signed in" Visibility="Collapsed"/>
+    </StackPanel>
+
+</Page>
