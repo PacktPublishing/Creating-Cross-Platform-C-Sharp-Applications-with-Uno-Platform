@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using Query = System.Func<Uno.UITest.IAppQuery, Uno.UITest.IAppQuery>;
+using System.Linq;
+using Uno.UITest.Helpers.Queries;
+
 namespace UnoAutomatedTestsApp.UITests.Tests
 {
     public class SignInTests : TestBase
@@ -13,9 +16,9 @@ namespace UnoAutomatedTestsApp.UITests.Tests
         [Test]
         public void VerifyLoginRenders()
         {
-            App.WaitForElement("UsernameInput");
-            App.WaitForElement("PasswordInput");
-            App.WaitForElement("SignInButton");
+        App.WaitForElement("UsernameInput", "Username input wasn't found.");
+        App.WaitForElement("PasswordInput", "Password input wasn't found.");
+        App.WaitForElement("SignInButton", "Sign in button wasn't found.");
         }
 
         [Test]
@@ -27,21 +30,20 @@ namespace UnoAutomatedTestsApp.UITests.Tests
             App.EnterText(passwordInput, "test");
 
             var signInButtonResult = App.WaitForElement(signInButton);
-            Assert.IsTrue(signInButtonResult.Length > 0);
-            Assert.IsTrue(signInButtonResult[0].Enabled);
+            Assert.IsTrue(signInButtonResult[0].Enabled, "Sign in button was not enabled.");
         }
 
         [Test]
         public void VerifyInvalidCredentialsHaveErrorMessage()
         {
             App.ClearText(usernameInput);
-            App.EnterText(usernameInput, "invalid@unorail.com");
+            App.EnterText(usernameInput, "invalid");
             App.ClearText(passwordInput);
             App.EnterText(passwordInput, "invalid");
             App.Tap(signInButton);
 
-            var errorMessageResult = App.WaitForElement(errorMessageLabel);
-            Assert.IsTrue(errorMessageResult.Length > 0);
+            var errorMessage = App.Query(q => errorMessageLabel(q).GetDependencyPropertyValue("Text").Value<string>()).First();
+            Assert.AreEqual(errorMessage, "Username or password invalid or user does not exist.", "Error message not correct.");
         }
 
         [Test]
@@ -53,8 +55,8 @@ namespace UnoAutomatedTestsApp.UITests.Tests
             App.EnterText(passwordInput, "1234");
             App.Tap(signInButton);
 
-            var signedInLabel = App.WaitForElement(this.signedInLabel);
-            Assert.IsTrue(signedInLabel.Length > 0);
+            var signedInMessage = App.Query(q => signedInLabel(q).GetDependencyPropertyValue("Text").Value<string>()).First();
+            Assert.AreEqual(signedInMessage, "Successfully signed in!", "Success message not correct.");
         }
     }
 }
