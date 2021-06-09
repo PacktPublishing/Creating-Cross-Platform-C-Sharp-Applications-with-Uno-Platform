@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web" InitialTargets="CheckForSfChart">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
@@ -51,4 +51,10 @@
     <ProjectReference Include="..\..\SharedLibrary\UnoBookRail.Common\UnoBookRail.Common.csproj" />
   </ItemGroup>
   <Import Project="..\Dashboard.Shared\Dashboard.Shared.projitems" Label="Shared" Condition="Exists('..\Dashboard.Shared\Dashboard.Shared.projitems')" />
+  <Target Name="CheckForSfChart">
+    <Exec Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')"
+          Command="cmd.exe /c start https:////github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
+    <Error Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')"
+           Text="The SfChart project is also needed. See https://github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
+  </Target>
 </Project>
