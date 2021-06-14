@@ -26,6 +26,4 @@
         <Button Content="Change test" 
             Click="ChangeTextButton_Click"/>
     </StackPanel>
-
-
 </Page>
