@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoAutomatedTestsApp.UITest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoBookRail.Common", "..\SharedLibrary\UnoBookRail.Common\UnoBookRail.Common.csproj", "{468D8A2D-7E89-4E19-A38F-382A8B376F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoAutomatedTests.UWPUnitTests", "UnoAutomatedTests.UWPUnitTests\UnoAutomatedTests.UWPUnitTests.csproj", "{3C6530CB-2C3A-4BF9-B6E9-A73687482CB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoAutomatedTestsApp.UWPUnitTests", "UnoAutomatedTestsApp.UWPUnitTests\UnoAutomatedTestsApp.UWPUnitTests.csproj", "{3C6530CB-2C3A-4BF9-B6E9-A73687482CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnoAutomatedTestsApp.UWPUITests", "UnoAutomatedTestsApp.UWPUITests\UnoAutomatedTestsApp.UWPUITests.csproj", "{1643F926-6B72-4172-8151-8A2C1137B247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnoAutomatedTestsApp.UWPUITests", "UnoAutomatedTestsApp.UWPUITests\UnoAutomatedTestsApp.UWPUITests.csproj", "{1643F926-6B72-4172-8151-8A2C1137B247}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
