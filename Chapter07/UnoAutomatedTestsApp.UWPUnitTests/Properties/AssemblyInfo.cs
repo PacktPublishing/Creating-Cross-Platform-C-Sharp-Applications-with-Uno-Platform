@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("UnoAutomatedTests.UWPUnitTests")]
+[assembly: AssemblyTitle("UnoAutomatedTestsApp.UWPUnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UnoAutomatedTests.UWPUnitTests")]
+[assembly: AssemblyProduct("UnoAutomatedTestsApp.UWPUnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

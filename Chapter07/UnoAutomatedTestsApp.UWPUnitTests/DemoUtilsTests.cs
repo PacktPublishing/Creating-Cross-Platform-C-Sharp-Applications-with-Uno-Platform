@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnoAutomatedTestsApp;
 
-namespace UnoAutomatedTests.UWPUnitTests
+namespace UnoAutomatedTestsApp.UWPUnitTests
 {
     [TestClass]
     public class DemoUtilsTests
