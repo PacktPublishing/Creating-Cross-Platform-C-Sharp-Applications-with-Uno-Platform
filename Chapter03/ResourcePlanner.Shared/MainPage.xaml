@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="ResourcePlanner.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResourcePlanner"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <muxc:MenuBar>
+            <muxc:MenuBar.Items>
+                <muxc:MenuBarItem Title="Incidents">
+                    <MenuFlyoutItem Text="New" Command="{x:Bind navigationVM.Issues_OpenNewIssueViewCommand}"/>
+                    <MenuFlyoutItem Text="Export to PDF" Command="{x:Bind navigationVM.Issues_ExportIssueViewCommand}"
+                        IsEnabled="{x:Bind navigationVM.HasSelectedIssue,Mode=OneWay}"/>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem Text="All" Command="{x:Bind navigationVM.Issues_OpenAllIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Train issues" Command="{x:Bind navigationVM.Issues_OpenTrainIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Station issues" Command="{x:Bind navigationVM.Issues_OpenStationIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Other issues" Command="{x:Bind navigationVM.Issues_OpenOtherIssuesCommand}"/>
+                </muxc:MenuBarItem>
+
+                <muxc:MenuBarItem Title="Trains" IsEnabled="False"/>
+                <muxc:MenuBarItem Title="Staff" IsEnabled="False"/>
+                <muxc:MenuBarItem Title="Depots" IsEnabled="False"/>
+                <muxc:MenuBarItem Title="Stations" IsEnabled="False"/>
+            </muxc:MenuBar.Items>
+        </muxc:MenuBar>
+
+        <ContentPresenter Grid.Row="1" Content="{x:Bind navigationVM.Content, Mode=OneWay}"/>
+
+    </Grid>
+</Page>
