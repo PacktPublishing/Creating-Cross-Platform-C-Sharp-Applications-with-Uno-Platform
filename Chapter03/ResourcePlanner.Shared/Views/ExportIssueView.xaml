@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="ResourcePlanner.Views.ExportIssueView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResourcePlanner.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wctcontrols="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:wasm="http://uno.ui/wasm"
+    xmlns:not_wasm="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:ubrcissues="using:UnoBookRail.Common.Issues"
+    mc:Ignorable="d wasm"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel Padding="20">
+        <TextBlock Text="Issue information" FontSize="18"/>
+
+        <StackPanel Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Padding="10" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel MinWidth="200">
+                    <TextBlock Text="Title" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Bind exportIssueVM.Issue.Title}"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Type" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Bind exportIssueVM.Issue.IssueType}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBlock Text="Description" FontWeight="Bold"/>
+            <TextBlock Text="{x:Bind exportIssueVM.Issue.Description}" TextWrapping="WrapWholeWords"
+                HorizontalAlignment="Left" MaxWidth="410"/>
+
+            <wctcontrols:SwitchPresenter Value="{x:Bind exportIssueVM.Issue.IssueType}">
+                <wctcontrols:SwitchPresenter.SwitchCases>
+                    <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Train}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <StackPanel MinWidth="200" MaxWidth="400">
+                                <TextBlock Text="Train number" FontWeight="Bold"/>
+                                <TextBlock Text="{x:Bind exportIssueVM.Issue.Title, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </wctcontrols:Case>
+                    <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Station}">
+                        <StackPanel MinWidth="200" MaxWidth="400" HorizontalAlignment="Left">
+                            <TextBlock Text="Station name" FontWeight="Bold"/>
+                            <TextBlock Text="{x:Bind exportIssueVM.Issue.Title, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </wctcontrols:Case>
+                    <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Other}">
+                        <StackPanel MinWidth="200" MaxWidth="400" HorizontalAlignment="Left">
+                            <TextBlock Text="Location" FontWeight="Bold"/>
+                            <TextBlock Text="{x:Bind exportIssueVM.Issue.Title, Mode=TwoWay}"/>
+                        </StackPanel>
+                    </wctcontrols:Case>
+                </wctcontrols:SwitchPresenter.SwitchCases>
+            </wctcontrols:SwitchPresenter>
+        </StackPanel>
+
+        <not_wasm:Button Content="Create PDF" Command="{x:Bind exportIssueVM.SavePDFClickedCommand}"/>
+        <wasm:Grid>
+            <local:WasmDownloadElement FileName="Issue-Export.pdf" x:Name="WASMDownloadLink">Download PDF</local:WasmDownloadElement>
+        </wasm:Grid>
+    </StackPanel>
+</UserControl>

@@ -5,6 +5,13 @@ namespace UnoBookRail.Common.Auth
 {
     public static class Authentication
     {
+        public static User GetCurrentUser()
+        {
+            // In a real application, the code would be more complex.
+            // For sake of simplicity, we will assume they are the demo user.
+            return Users.DemoUser;
+        }
+
         public static SignInResponse SignIn(string staffIdentifier, string passCode)
         {
             var response = new SignInResponse();

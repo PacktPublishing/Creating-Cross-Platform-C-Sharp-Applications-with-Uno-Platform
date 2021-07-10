@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="ResourcePlanner.Views.CreateIssueView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ResourcePlanner.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wctcontrols="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:wctui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:ubrcissues="using:UnoBookRail.Common.Issues"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <StackPanel Orientation="Vertical" Padding="20">
+        <TextBlock Text="Create new issue" FontSize="24"/>
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <StackPanel MinWidth="200" MaxWidth="400">
+                <TextBox x:Name="TitleTextBox" Header="Title" Text="{x:Bind createIssueVM.Title, Mode=TwoWay}"
+                        HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
+                <TextBlock x:Name="titleErrorNotification" Foreground="{ThemeResource SystemErrorTextColor}"/>
+            </StackPanel>
+
+            <StackPanel MinWidth="200" MaxWidth="400">
+                <ComboBox Header="Type" ItemsSource="{wctui:EnumValues Type=ubrcissues:IssueType}" HorizontalAlignment="Stretch"
+                    SelectedItem="{x:Bind createIssueVM.IssueType, Mode=TwoWay}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBox Header="Description" Text="{x:Bind createIssueVM.Description, Mode=TwoWay}"
+            MinWidth="410" MaxWidth="800" HorizontalAlignment="Left"/>
+
+        <wctcontrols:SwitchPresenter Value="{x:Bind createIssueVM.IssueType, Mode=OneWay}">
+            <wctcontrols:SwitchPresenter.SwitchCases>
+                <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Train}">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <StackPanel MinWidth="410" MaxWidth="800">
+                            <TextBox x:Name="TrainNumberTextBox" Header="Train number" Text="{x:Bind createIssueVM.TrainNumber, Mode=TwoWay}"
+                                HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
+                            <TextBlock x:Name="trainNumberErrorNotification" Foreground="{ThemeResource SystemErrorTextColor}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </wctcontrols:Case>
+                <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Station}">
+                    <StackPanel MinWidth="410" MaxWidth="800" HorizontalAlignment="Left">
+                        <TextBox x:Name="StationNameTextBox" Header="Station name" Text="{x:Bind createIssueVM.StationName, Mode=TwoWay}"
+                            HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
+                        <TextBlock x:Name="stationNameErrorNotification" Foreground="{ThemeResource SystemErrorTextColor}"/>
+                    </StackPanel>
+                </wctcontrols:Case>
+                <wctcontrols:Case Value="{x:Bind ubrcissues:IssueType.Other}">
+                    <StackPanel MinWidth="410" MaxWidth="800" HorizontalAlignment="Left">
+                        <TextBox x:Name="LocationTextBox" Header="Location" Text="{x:Bind createIssueVM.Location, Mode=TwoWay}"
+                            HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
+                        <TextBlock x:Name="locationErrorNotification" Foreground="{ThemeResource SystemErrorTextColor}"/>
+                    </StackPanel>
+                </wctcontrols:Case>
+            </wctcontrols:SwitchPresenter.SwitchCases>
+        </wctcontrols:SwitchPresenter>
+
+        <Button Content="Create new issue" Margin="0,0,0,0" Width="410" HorizontalAlignment="Left" Click="CreateIssueButton_Click"/>
+    </StackPanel>
+</UserControl>

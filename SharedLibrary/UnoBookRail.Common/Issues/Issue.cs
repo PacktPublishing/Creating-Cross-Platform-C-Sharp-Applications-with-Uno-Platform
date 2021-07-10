@@ -8,11 +8,10 @@ namespace UnoBookRail.Common.Issues
     public class Issue
     {
         public IssueType IssueType { get; set; }
-    
+
         // Issue type 'Train'
         public string TrainNumber { get; set; }
-        public string ModelNumber { get; set; }
-        
+
         // Issue type 'Station'
         public string StationName { get; set; }
 
@@ -20,12 +19,13 @@ namespace UnoBookRail.Common.Issues
         public string Location { get; set; }
 
         public string Title { get; set; }
+        public string Description { get; set; }
         public Urgency Urgency { get; set; }
         public bool IsOpen { get; set; }
         public DateTime OpenDate { get; set; }
         public User OpenedBy { get; set; }
         public DateTime CloseDate { get; set; }
+        public string CloseDateReadable => IsOpen ? "-" : CloseDate.ToString();
         public User ClosedBy { get; set; }
-        public readonly IList<User> Assignees = new List<User>();
     }
 }

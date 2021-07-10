@@ -17,12 +17,14 @@
         <muxc:MenuBar>
             <muxc:MenuBar.Items>
                 <muxc:MenuBarItem Title="Incidents">
-                    <MenuFlyoutItem Text="New" />
-                    <MenuFlyoutItem Text="Edit"/>
+                    <MenuFlyoutItem Text="New" Command="{x:Bind navigationVM.Issues_OpenNewIssueViewCommand}"/>
+                    <MenuFlyoutItem Text="Export to PDF" Command="{x:Bind navigationVM.Issues_ExportIssueViewCommand}"
+                        IsEnabled="{x:Bind navigationVM.HasSelectedIssue,Mode=OneWay}"/>
                     <MenuFlyoutSeparator/>
-                    <MenuFlyoutItem Text="All"/>
-                    <MenuFlyoutItem Text="Open"/>
-                    <MenuFlyoutItem Text="Finished"/>
+                    <MenuFlyoutItem Text="All" Command="{x:Bind navigationVM.Issues_OpenAllIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Train issues" Command="{x:Bind navigationVM.Issues_OpenTrainIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Station issues" Command="{x:Bind navigationVM.Issues_OpenStationIssuesCommand}"/>
+                    <MenuFlyoutItem Text="Other issues" Command="{x:Bind navigationVM.Issues_OpenOtherIssuesCommand}"/>
                 </muxc:MenuBarItem>
 
                 <muxc:MenuBarItem Title="Trains" IsEnabled="False"/>
@@ -31,6 +33,8 @@
                 <muxc:MenuBarItem Title="Stations" IsEnabled="False"/>
             </muxc:MenuBar.Items>
         </muxc:MenuBar>
+
+        <ContentPresenter Grid.Row="1" Content="{x:Bind navigationVM.Content, Mode=OneWay}"/>
 
     </Grid>
 </Page>
