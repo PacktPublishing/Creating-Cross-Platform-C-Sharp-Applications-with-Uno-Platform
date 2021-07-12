@@ -12,7 +12,7 @@ namespace UnoBookRail.Common.Auth
             return Users.DemoUser;
         }
 
-        public static SignInResponse SignIn(string staffIdentifier, string passCode)
+        public static SignInResponse SignIn(string username, string password)
         {
             var response = new SignInResponse();
 
