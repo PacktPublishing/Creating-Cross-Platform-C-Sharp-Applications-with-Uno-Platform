@@ -16,7 +16,7 @@
 
         <muxc:MenuBar>
             <muxc:MenuBar.Items>
-                <muxc:MenuBarItem Title="Incidents">
+                <muxc:MenuBarItem Title="Issues">
                     <MenuFlyoutItem Text="New" Command="{x:Bind navigationVM.Issues_OpenNewIssueViewCommand}"/>
                     <MenuFlyoutItem Text="Export to PDF" Command="{x:Bind navigationVM.Issues_ExportIssueViewCommand}"
                         IsEnabled="{x:Bind navigationVM.HasSelectedIssue,Mode=OneWay}"/>

@@ -14,18 +14,23 @@
 
     <StackPanel Orientation="Vertical" Padding="20">
         <TextBlock Text="Create new issue" FontSize="24"/>
-        <StackPanel Orientation="Horizontal" Spacing="10">
-            <StackPanel MinWidth="200" MaxWidth="400">
-                <TextBox x:Name="TitleTextBox" Header="Title" Text="{x:Bind createIssueVM.Title, Mode=TwoWay}"
-                        HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
-                <TextBlock x:Name="titleErrorNotification" Foreground="{ThemeResource SystemErrorTextColor}"/>
-            </StackPanel>
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            <StackPanel MinWidth="200" MaxWidth="400">
-                <ComboBox Header="Type" ItemsSource="{wctui:EnumValues Type=ubrcissues:IssueType}" HorizontalAlignment="Stretch"
-                    SelectedItem="{x:Bind createIssueVM.IssueType, Mode=TwoWay}"/>
-            </StackPanel>
-        </StackPanel>
+            <TextBox x:Name="TitleTextBox" Header="Title" Text="{x:Bind createIssueVM.Title, Mode=TwoWay}"
+                    HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
+            <TextBlock x:Name="titleErrorNotification" Grid.Row="1" Foreground="{ThemeResource SystemErrorTextColor}"/>
+
+            <ComboBox Header="Type" Grid.Column="1" ItemsSource="{wctui:EnumValues Type=ubrcissues:IssueType}" HorizontalAlignment="Stretch"
+                SelectedItem="{x:Bind createIssueVM.IssueType, Mode=TwoWay}"/>
+        </Grid>
 
         <TextBox Header="Description" Text="{x:Bind createIssueVM.Description, Mode=TwoWay}"
             MinWidth="410" MaxWidth="800" HorizontalAlignment="Left"/>
@@ -58,6 +63,6 @@
             </wctcontrols:SwitchPresenter.SwitchCases>
         </wctcontrols:SwitchPresenter>
 
-        <Button Content="Create new issue" Margin="0,0,0,0" Width="410" HorizontalAlignment="Left" Click="CreateIssueButton_Click"/>
+        <Button Content="Create new issue" Margin="0,10,0,0" Width="410" HorizontalAlignment="Left" Click="CreateIssueButton_Click"/>
     </StackPanel>
 </UserControl>
