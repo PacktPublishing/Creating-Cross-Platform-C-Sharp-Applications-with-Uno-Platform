@@ -15,7 +15,7 @@
         AutoGenerateColumns="False"
         ItemsSource="{x:Bind issueListVM.Issues,Mode=OneWay}">
         <wct:DataGrid.Columns>
-            <wct:DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="False" CanUserSort="True"/>
+            <wct:DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" CanUserSort="True"/>
             <wct:DataGridTextColumn Header="Type" Binding="{Binding IssueType}" IsReadOnly="True" CanUserSort="True"/>
             <wct:DataGridTextColumn Header="Creator" Binding="{Binding OpenedBy.FormattedName}" IsReadOnly="True" CanUserSort="True"/>
             <wct:DataGridTextColumn Header="Created on" Binding="{Binding OpenDate}" IsReadOnly="True" CanUserSort="True"/>
