@@ -65,11 +65,11 @@ namespace ResourcePlanner.ViewModels
             {
                 Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Train).ToList()), this);
             });
-            Issues_OpenTrainIssuesCommand = new RelayCommand(() =>
+            Issues_OpenStationIssuesCommand = new RelayCommand(() =>
             {
                 Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Station).ToList()), this);
             });
-            Issues_OpenTrainIssuesCommand = new RelayCommand(() =>
+            Issues_OpenOtherIssuesCommand = new RelayCommand(() =>
             {
                 Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Other).ToList()), this);
             });
