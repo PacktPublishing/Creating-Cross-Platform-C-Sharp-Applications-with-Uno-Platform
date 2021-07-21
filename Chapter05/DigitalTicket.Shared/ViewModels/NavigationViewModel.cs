@@ -17,8 +17,12 @@ namespace DigitalTicket.ViewModels
             set
             {
                 SetProperty(ref pageType, value);
+                PageTypeChanged.Invoke(null, new EventArgs());
             }
         }
+
+        public event EventHandler PageTypeChanged;
+
         public void NavigationView_SelectionChanged(NavigationView navigationView, NavigationViewSelectionChangedEventArgs args)
         {
             if (args.IsSettingsSelected)

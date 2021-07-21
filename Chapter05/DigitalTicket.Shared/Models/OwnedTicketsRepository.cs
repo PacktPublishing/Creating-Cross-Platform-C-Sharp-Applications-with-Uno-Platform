@@ -13,8 +13,12 @@ namespace DigitalTicket.Models
         const string DBFileName = "ownedTickets.db";
         private static SQLiteAsyncConnection database;
 
-        public async static void InitializeDatabase()
+        public async static Task InitializeDatabase()
         {
+            if (database != null)
+            {
+                return;
+            }
             await ApplicationData.Current.LocalFolder.CreateFileAsync(DBFileName, CreationCollisionOption.OpenIfExists);
             string dbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, DBFileName);
 

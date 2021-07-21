@@ -2,7 +2,7 @@
 
 namespace DigitalTicket.Models
 {
-    public class SettingsStore
+    public static class SettingsStore
     {
         private const string AppLanguageKey = "Settings.AppLanguage";
 

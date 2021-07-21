@@ -20,7 +20,7 @@ namespace DigitalTicket
             {
                 AppNavigation.SelectedItem = JourneyBookingItem;
                 navigationVM.PageType = typeof(JourneyBookingPage);
-                navigationVM.PropertyChanged += Navigation_PropertyChanged;
+                navigationVM.PageTypeChanged += NavigationVM_PageTypeChanged;
             }
 
             ContentFrame.Navigate(navigationVM.PageType);
@@ -40,12 +40,9 @@ namespace DigitalTicket
             }
         }
 
-        private void Navigation_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void NavigationVM_PageTypeChanged(object sender, EventArgs e)
         {
-            if (e.PropertyName == nameof(navigationVM.PageType))
-            {
-                ContentFrame.Navigate(navigationVM.PageType);
-            }
+            ContentFrame.Navigate(navigationVM.PageType);
         }
     }
 

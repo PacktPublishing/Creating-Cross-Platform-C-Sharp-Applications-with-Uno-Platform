@@ -4,11 +4,16 @@ namespace DigitalTicket.Utils
 {
     public static class LocalizedResources
     {
+        private static ResourceLoader cachedResourceLoader;
         public static string GetString(string name)
         {
-            if (Windows.UI.Core.CoreWindow.GetForCurrentThread() != null)
+            if (cachedResourceLoader == null)
             {
-                return ResourceLoader.GetForCurrentView().GetString(name);
+                cachedResourceLoader = ResourceLoader.GetForViewIndependentUse();
+            }
+            if (cachedResourceLoader != null)
+            {
+                return cachedResourceLoader.GetString(name);
             }
             return null;
         }
