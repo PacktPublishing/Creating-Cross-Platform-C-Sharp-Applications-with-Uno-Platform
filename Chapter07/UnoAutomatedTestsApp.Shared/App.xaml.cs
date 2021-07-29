@@ -59,6 +59,11 @@ namespace UnoAutomatedTestsApp
             }
 #endif
 
+#if __IOS__ && USE_UITESTS
+            //Launches Xamarin Test Cloud Agent
+            Xamarin.Calabash.Start();
+#endif
+
 #if NET5_0 && WINDOWS
             _window = new Window();
             _window.Activate();
