@@ -45,13 +45,6 @@ namespace NetworkAssist
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if __ANDROID__
-            this.Resources.MergedDictionaries.Add(new global::Uno.Material.MaterialColorPalette());
-            this.Resources.MergedDictionaries.Add(new global::Uno.Material.MaterialResources());
-#endif
-#if __IOS__
-            this.Resources.MergedDictionaries.Add(new global::Uno.Cupertino.CupertinoResources());
-#endif
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {

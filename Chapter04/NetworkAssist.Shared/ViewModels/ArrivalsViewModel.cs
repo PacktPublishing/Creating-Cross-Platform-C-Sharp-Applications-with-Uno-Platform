@@ -89,6 +89,7 @@ namespace NetworkAssist.ViewModels
         {
             if (stationId < 1)
             {
+                // if no value passed use the previously selected Id.
                 stationId = SelectedStation?.Id ?? 0;
             }
             else

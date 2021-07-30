@@ -2,18 +2,25 @@
     x:Class="NetworkAssist.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ios="http://uno.ui/ios"
     xmlns:local="using:NetworkAssist"
+    xmlns:android="http://uno.ui/android"
+    xmlns:ios="http://uno.ui/ios"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="ios">
+    mc:Ignorable="android ios">
 
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+
+                <android:MaterialColors xmlns="using:Uno.Material" />
+                <android:MaterialResources xmlns="using:Uno.Material" />
+
+                <ios:CupertinoColors xmlns="using:Uno.Cupertino"  />
+                <ios:CupertinoResources xmlns="using:Uno.Cupertino" />
             </ResourceDictionary.MergedDictionaries>
+
             <ios:Style BasedOn="{StaticResource CupertinoButtonStyle}" TargetType="Button" />
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>

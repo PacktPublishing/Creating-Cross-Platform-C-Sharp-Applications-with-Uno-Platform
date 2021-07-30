@@ -47,11 +47,6 @@ namespace NetworkAssist.Views
 
         private async Task<string> GetLocationAsync()
         {
-#if __IOS__
-            // Bug prevents running this on iOS https://github.com/unoplatform/uno/issues/4853
-            return "Unavailable";
-#endif
-
             try
             {
                 var accessStatus = await Geolocator.RequestAccessAsync();

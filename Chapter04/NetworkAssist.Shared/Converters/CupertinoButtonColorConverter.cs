@@ -7,7 +7,7 @@ namespace NetworkAssist.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value.ToString() == parameter.ToString())
+            if (value?.ToString() == parameter?.ToString())
             {
                 return App.Current.Resources["CupertinoBlueBrush"];
             }
