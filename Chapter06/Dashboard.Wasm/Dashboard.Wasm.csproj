@@ -41,8 +41,8 @@
     <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.0.1" />
     <PackageReference Include="Uno.SkiaSharp.Views" Version="2.80.0-uno.493" />
     <PackageReference Include="Uno.SkiaSharp.Wasm" Version="2.80.0-uno.493" />
-    <PackageReference Include="Uno.UI.WebAssembly" Version="3.7.4" />
-    <PackageReference Include="Uno.UI.RemoteControl" Version="3.7.4" Condition="'$(Configuration)'=='Debug'" />
+    <PackageReference Include="Uno.UI.WebAssembly" Version="3.9.1" />
+    <PackageReference Include="Uno.UI.RemoteControl" Version="3.9.1" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.1.0" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.1.0" />
   </ItemGroup>
@@ -52,9 +52,7 @@
   </ItemGroup>
   <Import Project="..\Dashboard.Shared\Dashboard.Shared.projitems" Label="Shared" Condition="Exists('..\Dashboard.Shared\Dashboard.Shared.projitems')" />
   <Target Name="CheckForSfChart">
-    <Exec Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')"
-          Command="cmd.exe /c start https:////github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
-    <Error Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')"
-           Text="The SfChart project is also needed. See https://github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
+    <Exec Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')" Command="cmd.exe /c start https:////github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
+    <Error Condition="!Exists('..\..\..\syncfusion-Uno.SfChart\Src\Syncfusion.SfChart.Uno.csproj')" Text="The SfChart project is also needed. See https://github.com/PacktPublishing/Creating-cross-platform-applications-with-Uno/tree/main/Chapter6/readme.md" />
   </Target>
 </Project>

@@ -9,3 +9,5 @@ To compile this example, you'll need both projects cloned to the same root direc
 _It doesn't need to be this exact path, and you can have other repos there too._
 
 Without this, the relative path to the SfChart project will be invalid.
+
+Also, be sure to update the version of `Uno.UI` referenced by the `Syncfusion.SfChart.Uno` project.
