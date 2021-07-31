@@ -17,7 +17,7 @@ namespace DigitalTicket.ViewModels
             set
             {
                 SetProperty(ref pageType, value);
-                PageTypeChanged.Invoke(null, new EventArgs());
+                PageTypeChanged?.Invoke(null, new EventArgs());
             }
         }
 

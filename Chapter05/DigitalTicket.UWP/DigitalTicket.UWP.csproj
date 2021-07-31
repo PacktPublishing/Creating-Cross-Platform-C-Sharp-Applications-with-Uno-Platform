@@ -11,14 +11,14 @@
       <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Mvvm">
-      <Version>7.0.1</Version>
+      <Version>7.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml" Version="2.5.0" />
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Core" Version="2.3.0" />
-    <PackageReference Include="Uno.UI" Version="3.7.3" />
+    <PackageReference Include="Uno.Core" Version="2.4.0" />
+    <PackageReference Include="Uno.UI" Version="3.9.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
     <PackageReference Include="ZXing.Net.Mobile">
