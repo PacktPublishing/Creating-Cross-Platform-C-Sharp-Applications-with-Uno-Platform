@@ -21,7 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\IssuesModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IssuesRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CreateIssueViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ExportIssueViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IssueListViewModel.cs" />

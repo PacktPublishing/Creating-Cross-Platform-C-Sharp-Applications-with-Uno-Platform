@@ -39,13 +39,13 @@ namespace ResourcePlanner.ViewModels
             }
         }
 
-        public ICommand Issues_OpenNewIssueViewCommand { get; private set; }
-        public ICommand Issues_ExportIssueViewCommand { get; private set; }
+        public ICommand Issues_OpenNewIssueViewCommand { get; }
+        public ICommand Issues_ExportIssueViewCommand { get; }
 
-        public ICommand Issues_OpenAllIssuesCommand { get; private set; }
-        public ICommand Issues_OpenTrainIssuesCommand { get; private set; }
-        public ICommand Issues_OpenStationIssuesCommand { get; private set; }
-        public ICommand Issues_OpenOtherIssuesCommand { get; private set; }
+        public ICommand Issues_OpenAllIssuesCommand { get; }
+        public ICommand Issues_OpenTrainIssuesCommand { get; }
+        public ICommand Issues_OpenStationIssuesCommand { get; }
+        public ICommand Issues_OpenOtherIssuesCommand { get; }
 
         public NavigationViewModel()
         {

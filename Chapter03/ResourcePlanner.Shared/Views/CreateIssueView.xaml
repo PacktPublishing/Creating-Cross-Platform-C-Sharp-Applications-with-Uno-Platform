@@ -24,15 +24,22 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="TitleTextBox" Header="Title" Text="{x:Bind createIssueVM.Title, Mode=TwoWay}"
-                    HorizontalAlignment="Stretch" TextChanged="FormInput_TextChanged"/>
-            <TextBlock x:Name="titleErrorNotification" Grid.Row="1" Foreground="{ThemeResource SystemErrorTextColor}"/>
+            <TextBox x:Name="TitleTextBox"
+                Header="Title"
+                Text="{x:Bind createIssueVM.Title, Mode=TwoWay}"
+                HorizontalAlignment="Stretch"
+                TextChanged="FormInput_TextChanged"/>
+            <TextBlock x:Name="titleErrorNotification" Grid.Row="1"
+                Foreground="{ThemeResource SystemErrorTextColor}"/>
 
-            <ComboBox Header="Type" Grid.Column="1" ItemsSource="{wctui:EnumValues Type=ubrcissues:IssueType}" HorizontalAlignment="Stretch"
+            <ComboBox Header="Type" Grid.Column="1"
+                ItemsSource="{wctui:EnumValues Type=ubrcissues:IssueType}"
+                HorizontalAlignment="Stretch"
                 SelectedItem="{x:Bind createIssueVM.IssueType, Mode=TwoWay}"/>
         </Grid>
 
-        <TextBox Header="Description" Text="{x:Bind createIssueVM.Description, Mode=TwoWay}"
+        <TextBox Header="Description"
+            Text="{x:Bind createIssueVM.Description, Mode=TwoWay}"
             MinWidth="410" MaxWidth="800" HorizontalAlignment="Left"/>
 
         <wctcontrols:SwitchPresenter Value="{x:Bind createIssueVM.IssueType, Mode=OneWay}">
@@ -63,6 +70,9 @@
             </wctcontrols:SwitchPresenter.SwitchCases>
         </wctcontrols:SwitchPresenter>
 
-        <Button Content="Create new issue" Margin="0,10,0,0" Width="410" HorizontalAlignment="Left" Click="CreateIssueButton_Click"/>
+        <Button Content="Create new issue"
+            Margin="0,10,0,0" Width="410"
+            HorizontalAlignment="Left"
+            Click="CreateIssueButton_Click"/>
     </StackPanel>
 </UserControl>

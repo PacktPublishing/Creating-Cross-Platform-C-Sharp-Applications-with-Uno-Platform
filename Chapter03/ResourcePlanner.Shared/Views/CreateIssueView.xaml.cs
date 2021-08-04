@@ -6,7 +6,7 @@ namespace ResourcePlanner.Views
 {
     public sealed partial class CreateIssueView : UserControl
     {
-        CreateIssueViewModel createIssueVM;
+        private CreateIssueViewModel createIssueVM;
 
         public CreateIssueView(CreateIssueViewModel viewModel)
         {
