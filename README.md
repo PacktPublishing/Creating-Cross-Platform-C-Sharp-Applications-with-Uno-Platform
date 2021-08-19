@@ -9,7 +9,7 @@ This is the code repository for [Creating Cross-Platform C# Applications with Un
 ## What is this book about?
 Developers are increasingly being asked to build native applications that run on multiple operating systems and in the browser. In the past, this would have meant learning new technologies and making multiple copies of an application. But the Uno Platform allows you to use tools, languages, and APIs you already know from building Windows apps to develop apps that can also run on other platforms. This book will help you to create customer-facing as well as line-of-business apps that can be used on the device, browser, or operating system of your choice.
 
-This book covers the following exciting features: <First 5 What you'll learn points>
+This book covers the following exciting features: 
 * Understand how and why Uno could be the right fit for your needs
 * Set up your development environment for cross-platform app development with the Uno Platform and create your first Uno Platform app
 * Find out how to create apps for different business scenarios
