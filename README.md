@@ -79,4 +79,6 @@ Marcel graduated with a Bachelor of Science in Computer Science and has been dev
 
 ## Errata
 
+Page 33: For the Android Phone to show up in the list, the developer mode needs to be enabled which is missing in the book. Instructions for this can be found [here](https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/set-up-device-for-development)
+
 Page 42: The code `#elif HAS_UNO_WASM` needs to be changed to `#elif HAS_UNO_WASM || __WASM__` 
