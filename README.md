@@ -77,3 +77,6 @@ Marcel graduated with a Bachelor of Science in Computer Science and has been dev
 
 
 
+## Errata
+
+Page 42: The code `#elif HAS_UNO_WASM` needs to be changed to `#elif HAS_UNO_WASM || __WASM__` 
