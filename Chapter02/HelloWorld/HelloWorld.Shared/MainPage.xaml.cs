@@ -14,7 +14,7 @@ namespace HelloWorld
         {
 #if __ANDROID__ || __IOS__
             helloTextBlock.Text = "Hello from C# on mobile!";
-#elif __WASM__
+#elif HAS_UNO_WASM || __WASM__
             helloTextBlock.Text = "Hello from C# on WASM!";
 #else
             helloTextBlock.Text = HelloWorld.Helpers.Greetings.GetStandardGreeting();
