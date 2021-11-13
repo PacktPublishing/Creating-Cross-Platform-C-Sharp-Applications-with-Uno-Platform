@@ -58,6 +58,8 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 Page 33: For the Android Phone to show up in the list, the developer mode needs to be enabled which is missing in the book. Instructions for this can be found [here](https://docs.microsoft.com/en-us/xamarin/android/get-started/installation/set-up-device-for-development)
 
+Pgae 38: If XAML Intellisense is not enabled for the XAML files, XAML Hot reload does not work, which was not covered in the book. See [this link](https://platform.uno/docs/articles/get-started-vs.html#make-sure-xaml-intellisense-is-enabled) for more details.
+
 Page 42: The code `#elif HAS_UNO_WASM` needs to be changed to `#elif HAS_UNO_WASM || __WASM__` 
 
 ## Code in Action
