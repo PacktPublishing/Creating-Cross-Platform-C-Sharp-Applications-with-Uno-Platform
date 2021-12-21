@@ -59,19 +59,19 @@ namespace ResourcePlanner.ViewModels
             });
             Issues_OpenAllIssuesCommand = new RelayCommand(() =>
             {
-                Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues()), this);
+                Content = new IssueListView(new IssueListViewModel(IssuesRepository.GetAllIssues()), this);
             });
             Issues_OpenTrainIssuesCommand = new RelayCommand(() =>
             {
-                Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Train).ToList()), this);
+                Content = new IssueListView(new IssueListViewModel(IssuesRepository.GetAllIssues().Where(issue => issue.IssueType == IssueType.Train).ToList()), this);
             });
             Issues_OpenStationIssuesCommand = new RelayCommand(() =>
             {
-                Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Station).ToList()), this);
+                Content = new IssueListView(new IssueListViewModel(IssuesRepository.GetAllIssues().Where(issue => issue.IssueType == IssueType.Station).ToList()), this);
             });
             Issues_OpenOtherIssuesCommand = new RelayCommand(() =>
             {
-                Content = new IssueListView(new IssueListViewModel(IssuesModel.GetAllIssues().Where(issue => issue.IssueType == IssueType.Other).ToList()), this);
+                Content = new IssueListView(new IssueListViewModel(IssuesRepository.GetAllIssues().Where(issue => issue.IssueType == IssueType.Other).ToList()), this);
             });
         }
         internal void SetSelectedIssue(Issue issue)

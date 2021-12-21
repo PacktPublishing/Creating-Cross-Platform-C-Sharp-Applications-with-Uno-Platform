@@ -67,7 +67,7 @@ namespace ResourcePlanner.ViewModels
                         issue.Location = Location;
                         break;
                 }
-                IssuesModel.AddIssue(issue);
+                IssuesRepository.AddIssue(issue);
                 navigationVM.Issues_OpenAllIssuesCommand.Execute(null);
             });
         }

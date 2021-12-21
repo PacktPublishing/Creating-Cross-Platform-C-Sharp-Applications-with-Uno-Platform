@@ -3,7 +3,7 @@ using UnoBookRail.Common.Issues;
 
 namespace ResourcePlanner.Models
 {
-    public class IssuesModel
+    public class IssuesRepository
     {
         private static List<Issue> issues = new List<Issue>();
 
